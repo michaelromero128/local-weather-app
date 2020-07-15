@@ -23,7 +23,7 @@ interface ICurrentWeatherData {
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherService {
+export class WeatherService implements IWeatherService {
   constructor(private httpClient: HttpClient) {}
 
   getCurrentWeather(city: string, country: string): Observable<ICurrentWeather> {
@@ -31,13 +31,14 @@ export class WeatherService {
       .set('q', `${city},${country}`)
       .set('appid', environment.appId)
 
-    return this.httpClient.get<ICurrentWeather>(
+    return this.httpClient
+      .get<ICurrentWeatherData>(
         `${environment.baseUrl}api.openweathermap.org/data/2.5/weather`,
         { params: uriParams }
       )
-      .pipe(map(this.fun))
+      .pipe(map((data) => this.transformToICurrentWeather(data)))
   }
-  private transformToICurrentWeather(data: ICurrentWeatherData): ICurrentWeather{
+  private transformToICurrentWeather(data: ICurrentWeatherData): ICurrentWeather {
     const thing = {
       city: data.name,
       country: data.sys.country,
@@ -46,18 +47,13 @@ export class WeatherService {
       temperature: this.convertKelvinToFahernheit(data.main.temp),
       description: data.weather[0].description,
     }
-    console.log('at', thing)
     return thing
   }
   private convertKelvinToFahernheit(kelvin: number): number {
     return (kelvin * 9) / 5 - 459.67
   }
-  private fun = (data) => {
-    console.log(data)
-    return this.transformToICurrentWeather(data);
-  }
-  something = function(data){
-    console.log(data)
-    return this.transformToICurrentWeather(data);
-  }
+}
+
+export interface IWeatherService {
+  getCurrentWeather(city: string, country: string): Observable<ICurrentWeather>
 }
