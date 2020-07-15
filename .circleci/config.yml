@@ -8,7 +8,7 @@ jobs:
       - checkout
       - restore_chache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json"}}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
       - run: npm ci
       - run: cd ./node_modules/protractor && npm i webdrivermanager@latest
       - save_cache:
