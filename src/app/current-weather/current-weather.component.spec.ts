@@ -8,6 +8,9 @@ import { fakeWeather} from '../weather/weather.service.fake'
 import { injectSpy } from 'angular-unit-test-helper'
 import { of } from 'rxjs'
 import { By } from '@angular/platform-browser'
+import { MatIconModule } from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatCardModule } from '@angular/material/card'
 
 describe('CurrentWeatherComponent', () => {
   let component: CurrentWeatherComponent
@@ -21,6 +24,7 @@ describe('CurrentWeatherComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CurrentWeatherComponent],
       providers: [{ provide: WeatherService, useValue: weatherServiceSpy }],
+      imports: [MatCardModule, MatIconModule, MatToolbarModule],
     }).compileComponents()
     weatherServiceMock = injectSpy(WeatherService)
   }))

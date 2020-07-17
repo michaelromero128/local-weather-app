@@ -5,12 +5,15 @@ import { AppComponent } from './app.component'
 // import { HttpClient, HttpHandler } from '@angular/common/http'
 // import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { createComponentMock } from 'angular-unit-test-helper'
+import { MatIconModule } from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatCardModule } from '@angular/material/card'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, createComponentMock('CurrentWeatherComponent')],
-      // imports: [HttpClientTestingModule],
+      imports: [MatIconModule, MatToolbarModule, MatCardModule],
     }).compileComponents()
   }))
 
