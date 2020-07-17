@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/localcast-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -88,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/localcast-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "local-weather-app"
+    }
+  },
+  "defaultProject": "local-weather-app",
+  "cli": {
+    "analytics": "9548cef8-2c8f-4458-b4bc-20f0d9fde492"
+  }
 }
