@@ -49,10 +49,12 @@ describe('CurrentWeatherComponent', () => {
     weatherServiceMock.getCurrentWeather.and.returnValue(of(fakeWeather))
     fixture.detectChanges()
     expect(component.current).toBeDefined()
+
     expect(component.current.city).toEqual('Bethesda')
     expect(component.current.temperature).toEqual(280.32)
-    const debugEl= fixture.debugElement
-    const titleEl: HTMLElement = debugEl.query(By.css('span')).nativeElement
+    const debugEl = fixture.debugElement
+    const titleEl: HTMLElement = debugEl.query(By.css('div .mat-title.no-margin'))
+      .nativeElement
     expect(titleEl.textContent).toContain('Bethesda')
   })
 })

@@ -26,6 +26,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
     const compiled = fixture.nativeElement
-    expect(compiled.querySelector('h1').textContent).toContain('LocalCast Weather')
+    console.log('aaa', compiled)
+    expect(compiled.querySelector('span').textContent).toContain('LocalCast Weather')
   })
 })
